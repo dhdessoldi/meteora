@@ -1,0 +1,21 @@
+.container{
+  width: 323px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  &__foto{
+    width: 323px;
+  }
+  &__infos{
+    margin: 1rem;
+    &-titulo{
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    &-descricao{
+      font-size: 0.8125rem;
+    }
+    &-preco{
+      font-weight: 700;
+    }
+  }
+}

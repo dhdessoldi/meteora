@@ -1,0 +1,26 @@
+@import '/src/styles/variaveis';
+
+.categoria {
+  display: flex;
+  flex-direction: column;
+  width: 146px;
+  cursor: pointer;
+  &__text {
+    background-color: $black;
+    color: $white;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .categoria{
+    width: 209px;
+  }
+}
+
+@media screen and (min-width: 1440px){
+  .categoria{
+    width: 160px;
+  }
+}
+

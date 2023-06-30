@@ -1,0 +1,171 @@
+@import '/src/styles/variaveis';
+
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: $black;
+  height: 58px;
+  position: relative;
+
+  &__container {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    background-image: url('/components/Navbar/logo.png');
+    width: 125.7px;
+    height: 18px;
+  }
+
+  &__navbar {
+    display: none;
+    background-color: $darkgray;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    gap: 8px;
+    padding: 16px;
+    z-index: 1;
+
+    & a {
+      text-decoration: none;
+      color: $white;
+      font-weight: 400;
+      display: inline-block;
+      border-bottom: 1.5px solid $white;
+      border-width: 60%;
+      padding-bottom: 12px;
+      text-align: center;
+    }
+
+    & a:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+
+    & a:hover {
+      color: $yellow;
+    }
+
+    &-show {
+      display: flex;
+    }
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 4px;
+    margin: 1rem auto;
+    position: absolute;
+    top: 100%;
+
+  }
+
+  &__input {
+    border: 1px solid rgba(0, 0, 0, 1);
+    padding-left: 10px;
+    width: 215px;
+    height: 37px;
+  }
+
+  &__button {
+    border: 1px solid rgba(0, 0, 0, 1);
+    width: 88px;
+    font-weight: 500;
+    &:hover{
+      border: 1px solid $yellow;
+      color: $yellow;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    position: absolute;
+    width: 100%;
+
+    &__container {
+      flex: 2;
+      padding: 1rem;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    &__logo {
+      width: 125.7px;
+      height: 18px;
+    }
+
+    &__navbar {
+      position: inherit;
+      display: flex;
+      background-color: inherit;
+      flex-direction: row;
+      align-items: center;
+      padding: 0;
+      padding-left: 1rem;
+      gap: 1rem;
+      width: 100%;
+
+      & a {
+        border: none;
+        padding: 0;
+        font-size: 14px;
+      }
+
+      & a:hover {
+        color: $yellow;
+      }
+    }
+
+    &__icon {
+      display: none;
+    }
+
+    &__search {
+      flex: 1;
+      align-items: center;
+      position: relative;
+      top: 0;
+    }
+
+    &__input {
+      width: 135px;
+    }
+
+    &__button {
+      border: 1px solid $white;
+      width: 67px;
+      height: 37px;
+      color: $white;
+      background-color: $black;
+    }
+  }
+}
+
+
+@media screen and (min-width: 1440px) {
+  .header {
+    &__navbar {
+      padding-left: 2rem;
+      gap: 2rem;
+
+      & a {
+        border: none;
+        padding: 0;
+        font-size: 16px;
+      }
+    }
+
+    &__input {
+      width: 170px;
+    }
+  }
+
+}
