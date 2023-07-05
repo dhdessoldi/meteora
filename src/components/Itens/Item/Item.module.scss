@@ -1,3 +1,6 @@
+
+@import '/src/styles/variaveis';
+
 .container{
   width: 323px;
   box-sizing: border-box;
@@ -16,6 +19,43 @@
     }
     &-preco{
       font-weight: 700;
+    }
+    &-vendido{
+      color: #ADB5BD;
+    }
+    &-tamanho{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      section {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+      }
+    }
+  }
+  &__modal {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media screen and (min-width: 768px){
+  .container{
+    &__modal {
+      flex-direction: row;
     }
   }
 }

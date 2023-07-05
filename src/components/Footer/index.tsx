@@ -2,7 +2,8 @@ import styles from './Footer.module.scss';
 import diamond from './diamond.png';
 import arrow from './arrow-repeat.png';
 import flower from './flower.png';
-import Button from '../Button';
+import ModalEmail from '../ModalEmail';
+
 
 export default function Footer() {
   const facilidades = [{
@@ -34,13 +35,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className={styles.footer__card}>
-        <p className={styles['footer__card-texto']}>Quer receber nossas novidades, promoções exclusivas e 10% OFF na primeira compra? Cadastre-se!</p>
-        <div>
-          <input placeholder='Digite seu email' type="text" />
-          <Button>Enviar</Button>
-        </div>
-      </div>
+      <ModalEmail />
       <div className={styles.footer__direitos}>
         <p>2023 © Desenvolvido por Alura | Projeto fictício sem fins comerciais.</p>
       </div>

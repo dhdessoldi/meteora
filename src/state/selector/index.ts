@@ -1,6 +1,7 @@
 import {selector} from 'recoil';
 import { ICategorias } from '../../interface/ICategorias';
 import { IItens } from '../../interface/IItens';
+import { buscaDeItensState, listaDeItensState } from '../atom';
 
 export const categoriasAsync = selector({
   key:'categoriasAsync',
@@ -21,5 +22,20 @@ export const itensAsync = selector({
     return itensJson.map(item=>({
       ...item,
     }));
+  }
+});
+
+
+export const itensFiltradosState = selector({
+  key: 'itensFiltradosState',
+  get: ({get}) => {
+    const buscar = get(buscaDeItensState);
+    const todosOsItens = get(listaDeItensState);
+    if(buscar !== ''){
+      const itensFiltrados = todosOsItens.filter(item =>
+        item.titulo.toLowerCase().includes(buscar.toLowerCase()));
+      return itensFiltrados;
+    }
+    return todosOsItens;
   }
 });

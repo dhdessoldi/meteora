@@ -13,3 +13,8 @@ export const listaDeItensState = atom<IItens[]>({
   key: 'listaDeItens',
   default: itensAsync
 });
+
+export const buscaDeItensState = atom<string>({
+  key: 'buscaDeItens',
+  default: ''
+});
