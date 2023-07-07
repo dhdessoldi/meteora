@@ -1,9 +1,9 @@
 import {useRecoilValue} from 'recoil';
-import { itensFiltradosState } from '../selector';
+import { itensBuscadosState } from '../selector';
 
 
 const useListaDeItens = () => {
-  return useRecoilValue(itensFiltradosState);
+  return useRecoilValue(itensBuscadosState);
 };
 
 export default useListaDeItens;

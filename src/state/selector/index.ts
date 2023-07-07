@@ -1,7 +1,7 @@
 import {selector} from 'recoil';
 import { ICategorias } from '../../interface/ICategorias';
 import { IItens } from '../../interface/IItens';
-import { buscaDeItensState, listaDeItensState } from '../atom';
+import { filtroDeItensState, buscaDeItensState, listaDeItensState } from '../atom';
 
 export const categoriasAsync = selector({
   key:'categoriasAsync',
@@ -26,16 +26,22 @@ export const itensAsync = selector({
 });
 
 
-export const itensFiltradosState = selector({
-  key: 'itensFiltradosState',
+export const itensBuscadosState = selector({
+  key: 'itensBuscadosState',
   get: ({get}) => {
+    const filtrar = get(filtroDeItensState);
     const buscar = get(buscaDeItensState);
     const todosOsItens = get(listaDeItensState);
-    if(buscar !== ''){
-      const itensFiltrados = todosOsItens.filter(item =>
+    if(filtrar === '' && buscar !== ''){
+      const itensBuscados = todosOsItens.filter(item =>
         item.titulo.toLowerCase().includes(buscar.toLowerCase()));
+      return itensBuscados;
+    } if (filtrar !== '') {
+      const itensFiltrados = todosOsItens.filter(item =>
+        item.categoria.includes(filtrar));
       return itensFiltrados;
     }
     return todosOsItens;
   }
 });
+

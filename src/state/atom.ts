@@ -18,3 +18,8 @@ export const buscaDeItensState = atom<string>({
   key: 'buscaDeItens',
   default: ''
 });
+
+export const filtroDeItensState = atom<string>({
+  key: 'filtroDeItens',
+  default: ''
+});

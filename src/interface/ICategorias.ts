@@ -1,5 +1,5 @@
 export interface ICategorias {
-  id?: string
+  id: string
   nome: string
   thumbnail: string
 }

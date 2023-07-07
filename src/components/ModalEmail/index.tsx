@@ -5,17 +5,31 @@ import Button from '../Button';
 
 function ModalEmail() {
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const [email, setEmail] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
   const handleClose = () => setShow(false);
 
+  const handleShow = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailTest = regexEmail.test(email);
+    if (emailTest) {
+      setShow(true);
+      setEmail('');
+    }
+  };
   return (
     <>
       <div className={styles.modal__card}>
         <p className={styles['modal__card-texto']}>Quer receber nossas novidades, promoções exclusivas e 10% OFF na primeira compra? Cadastre-se!</p>
-        <div>
-          <input placeholder='Digite seu email' type="text" />
-          <Button onClick={handleShow}>Enviar</Button>
-        </div>
+        <form onSubmit={handleShow}>
+          <input placeholder='Digite seu email' value={email} type="email" required onChange={handleChange} />
+          <Button >Enviar</Button>
+        </form>
       </div>
       <Modal
         show={show}
