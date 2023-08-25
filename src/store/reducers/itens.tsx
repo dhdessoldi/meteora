@@ -1,6 +1,12 @@
 
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IItens } from '../../interface/IItens';
+import itensService from '../../services/itens';
+
+export const buscarItens = createAsyncThunk(
+  'itens/buscar',
+  itensService.buscar
+);
 
 const initialState: IItens[] = [{
   'id': 1,
@@ -56,10 +62,23 @@ const itensSlice = createSlice({
   initialState,
   reducers: {
     filtrarItens: (state, action: PayloadAction<string>) => {
-      state = initialState;
-      const novosItens = state.filter(item => item.categoria === action.payload);
-      return novosItens;
+      const verificaFiltro = state.filter(item => item.categoria !== action.payload);
+      if (verificaFiltro.length == 0) {
+        return initialState;
+      } else {
+        const itensFiltrados = initialState.filter(item => item.categoria === action.payload);
+        return itensFiltrados;
+      }
     }
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(
+        buscarItens.fulfilled,
+        (state, { payload }) => {
+          return payload;
+        }
+      );
   }
 
 });

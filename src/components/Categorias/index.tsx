@@ -9,15 +9,6 @@ export default function Categorias() {
 
   const dispatch = useDispatch();
 
-  // const [filtroDeItens, setSearchTerm] = useRecoilState(filtroDeItensState);
-
-  // const handleClick = (categoriaId: string) => {
-  //   if (filtroDeItens === categoriaId) {
-  //     setSearchTerm('');
-  //     return;
-  //   }
-  //   setSearchTerm(categoriaId);
-  // };
 
   return (
     <div className={styles.container__categorias}>
