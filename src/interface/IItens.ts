@@ -1,5 +1,5 @@
 export interface IItens {
-  id?: string
+  id?: number
   titulo: string
   descricao: string
   foto: string

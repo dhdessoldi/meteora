@@ -1,28 +1,32 @@
-import useListaDeCategorias from '../../state/hooks/useListaDeCategorias';
 import Categoria from '../../components/Categorias/Categoria';
 import styles from './Categorias.module.scss';
-import { filtroDeItensState } from '../../state/atom';
-import { useRecoilState } from 'recoil';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { filtrarItens } from '../../store/reducers/itens';
 
 export default function Categorias() {
-  const categorias = useListaDeCategorias();
+  const categorias = useSelector((state: RootState) => state.categorias);
 
-  const [filtroDeItens, setSearchTerm] = useRecoilState(filtroDeItensState);
+  const dispatch = useDispatch();
 
-  const handleClick = (categoriaId: string) => {
-    if (filtroDeItens === categoriaId) {
-      setSearchTerm('');
-      return;
-    }
-    setSearchTerm(categoriaId);
-  };
+  // const [filtroDeItens, setSearchTerm] = useRecoilState(filtroDeItensState);
+
+  // const handleClick = (categoriaId: string) => {
+  //   if (filtroDeItens === categoriaId) {
+  //     setSearchTerm('');
+  //     return;
+  //   }
+  //   setSearchTerm(categoriaId);
+  // };
 
   return (
     <div className={styles.container__categorias}>
       <h2 className={styles['container__categorias-text']}>Busque por categoria:</h2>
       <ul className={styles['container__categorias-list']}>
         {categorias.map((categoria, index) => (
-          <li key={index} value={categoria.nome} onClick={() => handleClick(categoria.id)}>
+          <li key={index} value={categoria.nome}
+            onClick={() => dispatch(filtrarItens(categoria.id))}
+          >
             <Categoria id={categoria.id} nome={categoria.nome} thumbnail={categoria.thumbnail} />
           </li>
         ))}

@@ -2,8 +2,6 @@ import { useState } from 'react';
 import styles from './Navbar.module.scss';
 import navbarIcon from './navbarIcon.png';
 import { Link } from 'react-router-dom';
-import { buscaDeItensState } from '../../state/atom';
-import { useRecoilState } from 'recoil';
 
 export default function Navbar() {
 
@@ -29,11 +27,11 @@ export default function Navbar() {
   }];
 
   const [show, setShow] = useState(false);
-  const [buscaDeItens, setSearchTerm] = useRecoilState(buscaDeItensState);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchTerm(event.target.value);
+  // };
+
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -64,7 +62,7 @@ export default function Navbar() {
           className={styles.header__input}
           type="text"
           placeholder='Digite o produto para buscar'
-          onChange={handleChange}
+        // onChange={handleChange}
         />
       </div>
     </header>
