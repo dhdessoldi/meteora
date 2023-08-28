@@ -1,14 +1,19 @@
 import Categoria from '../../components/Categorias/Categoria';
 import styles from './Categorias.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import { filtrarItens } from '../../store/reducers/itens';
+import { carregarCategorias } from '../../store/reducers/categorias';
+import { useEffect } from 'react';
 
 export default function Categorias() {
   const categorias = useSelector((state: RootState) => state.categorias);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(carregarCategorias());
+  }, [dispatch]);
 
   return (
     <div className={styles.container__categorias}>

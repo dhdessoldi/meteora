@@ -1,44 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ICategorias } from '../../interface/ICategorias';
+import categoriasService from '../../services/categorias';
 
-const initialState: ICategorias[] = [{
-  'nome': 'Camisetas',
-  'thumbnail': '/assets/categorias/camiseta.png',
-  'id': 'camisetas'
-},
-{
-  'nome': 'Bolsas',
-  'thumbnail': '/assets/categorias/bolsa.png',
-  'id': 'bolsas'
-},
-{
-  'nome': 'Calçados',
-  'thumbnail': '/assets/categorias/calcados.png',
-  'id': 'calcados'
-},
-{
-  'nome': 'Calças',
-  'thumbnail': '/assets/categorias/calca.png',
-  'id': 'calcas'
-},
-{
-  'nome': 'Casacos',
-  'thumbnail': '/assets/categorias/casaco.png',
-  'id': 'casacos'
-},
-{
-  'nome': 'Óculos',
-  'thumbnail': '/assets/categorias/oculos.png',
-  'id': 'oculos'
-}];
+const initialState: ICategorias[] = [];
+
+export const carregarCategorias = createAction('categorias/carregar');
+
+export const buscarCategorias = createAsyncThunk(
+  'categorias/buscar',
+  categoriasService.buscar
+);
 
 const categoriasSlice = createSlice({
   name: 'categorias',
   initialState,
   reducers: {
-
+    adicionarTodasAsCategorias: (state, { payload }) => {
+      return payload;
+    }
+  },
+  extraReducers: builder => {
+    builder.addCase(
+      buscarCategorias.fulfilled,
+      (state, { payload }) => {
+        return payload;
+      }
+    );
   }
 
 });
+
+export const { adicionarTodasAsCategorias } = categoriasSlice.actions;
 
 export default categoriasSlice.reducer;

@@ -7,7 +7,6 @@ import Itens from '../../components/Itens';
 
 export default function Home() {
 
-  // const itens = useListaDeItens();
   return (
     <main className={styles.container}>
       <Navbar />
