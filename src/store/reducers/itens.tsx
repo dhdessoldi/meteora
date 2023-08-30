@@ -5,10 +5,15 @@ import itensService from '../../services/itens';
 const initialState: IItens[] = [];
 
 export const carregarItens = createAction('itens/carregar');
+export const carregarItensDeCategoria = createAction<string>('itens/carregarDeCategoria');
 
 export const buscarItens = createAsyncThunk(
   'itens/buscar',
   itensService.buscar
+);
+export const buscarItensDeCategoria = createAsyncThunk(
+  'itens/buscarItensDeCategoira',
+  itensService.buscarDeCategorias
 );
 
 const itensSlice = createSlice({
@@ -16,16 +21,8 @@ const itensSlice = createSlice({
   initialState,
   reducers: {
     adicionarTodosOsItens: (state, { payload }) => {
-      state.push({ ...payload });
-    },
-    filtrarItens: (state, { payload }) => {
-      const verificaFiltro = state.filter(item => item.categoria !== payload);
-      if (verificaFiltro.length == 0) {
-        return state;
-      } else {
-        const itensFiltrados = initialState.filter(item => item.categoria === payload);
-        return itensFiltrados;
-      }
+      console.log(state.length);
+      return payload;
     }
   },
   extraReducers: builder => {
@@ -35,10 +32,16 @@ const itensSlice = createSlice({
         (state, { payload }) => {
           return payload;
         }
+      )
+      .addCase(
+        buscarItensDeCategoria.fulfilled,
+        (state, action) => {
+          return action.payload;
+        }
       );
   }
 
 });
 
-export const { adicionarTodosOsItens, filtrarItens } = itensSlice.actions;
+export const { adicionarTodosOsItens } = itensSlice.actions;
 export default itensSlice.reducer;

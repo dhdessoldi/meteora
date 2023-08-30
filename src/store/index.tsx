@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import categoriasSlice from './reducers/categorias';
 import itensSlice from './reducers/itens';
 import { listenerCategorias } from './middlewares/categorias';
+import { listenerItensDeCategoria, listenerTodosOsItens } from './middlewares/itens';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
       getDefaultMiddleware()
         .prepend(
           listenerCategorias.middleware,
-          // listenerItens.middleware,
+          listenerTodosOsItens.middleware,
+          listenerItensDeCategoria.middleware
         )
 });
 
