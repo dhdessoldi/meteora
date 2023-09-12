@@ -6,7 +6,7 @@ const itensService = {
     return resposta.data;
   },
   buscarDeCategorias: async (nomeCategoria: string) => {
-    const resposta = await instance.get(`/itens?busca=categoria=${nomeCategoria}`);
+    const resposta = await instance.get(`/itens/busca?categoria=${nomeCategoria}`);
 
     return resposta.data;
   }

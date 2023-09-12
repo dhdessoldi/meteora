@@ -19,6 +19,7 @@ export default function Categorias() {
   }, [dispatch]);
 
   function filtrarItens(categoriaId: string) {
+    console.log(categoriaId);
     const itemFiltrado = itens.filter(item => item.categoria !== categoriaId);
     if (itemFiltrado.length === 0) {
       dispatch(carregarItens());
