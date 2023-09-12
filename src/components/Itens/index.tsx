@@ -14,7 +14,13 @@ export default function Itens() {
     dispatch(carregarItens());
   }, [dispatch]);
 
-  const itens = useSelector((state: RootState) => state.itens);
+  const itens = useSelector((state: RootState) => {
+    const regexp = new RegExp(state.busca, 'i');
+    const itensTotais = state.itens;
+    const itens = itensTotais.filter(item => item.titulo.match(regexp));
+    return itens;
+  });
+
 
   return (
     <div className={styles.container__itens}>

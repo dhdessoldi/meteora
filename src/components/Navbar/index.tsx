@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Navbar.module.scss';
 import navbarIcon from './navbarIcon.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { mudarBusca, resetarBusca } from '../../store/reducers/busca';
+import { RootState } from '../../store';
 
 export default function Navbar() {
 
@@ -27,10 +30,12 @@ export default function Navbar() {
   }];
 
   const [show, setShow] = useState(false);
-
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearchTerm(event.target.value);
-  // };
+  const location = useLocation();
+  const busca = useSelector((state: RootState) => state.busca);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(resetarBusca());
+  }, [location.pathname, dispatch]);
 
   return (
     <header className={styles.header}>
@@ -62,7 +67,8 @@ export default function Navbar() {
           className={styles.header__input}
           type="text"
           placeholder='Digite o produto para buscar'
-        // onChange={handleChange}
+          value={busca}
+          onChange={event => dispatch(mudarBusca(event.target.value))}
         />
       </div>
     </header>

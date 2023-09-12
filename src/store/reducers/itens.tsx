@@ -21,7 +21,6 @@ const itensSlice = createSlice({
   initialState,
   reducers: {
     adicionarTodosOsItens: (state, { payload }) => {
-      console.log(state.length);
       return payload;
     }
   },
@@ -35,8 +34,8 @@ const itensSlice = createSlice({
       )
       .addCase(
         buscarItensDeCategoria.fulfilled,
-        (state, action) => {
-          return action.payload;
+        (state, { payload }) => {
+          return payload;
         }
       );
   }
